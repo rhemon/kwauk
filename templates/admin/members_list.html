@@ -1,0 +1,33 @@
+{% extends 'member/dashboard_base.html' %}
+
+{% block dashboard_main %}
+<div class="container">
+    <div class="row">
+        <h3>New Members Waiting to be Activated</h3>
+        <table>
+            <thead>
+                <th>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Phone</td>
+                    <td>Email</td>
+                    <td></td>
+                </th>
+            </thead>
+            <tbody>
+                {% for new_member in new_members %}
+                <tr>
+                    <td>{{new_member.first_name}}</td>
+                    <td>{{new_member.last_name}}</td>
+                    <td>{{new_member.username}}</td>
+                    <td>{{new_member.email}}</td>
+                    <td><a href="/admin/member_details/{{new_member.id}}" class="btn btn-primary">See Full Details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Current member list will be added</p>
+    </div>
+    
+</div>
+{% endblock %}

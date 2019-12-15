@@ -1,0 +1,14 @@
+{% extends "shared/base.html" %}
+
+
+{% block main_body %}
+<div class="container-fluid">
+    <div class="row">
+        {% include 'member/dashboard_sidebar.html' %}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            {% block dashboard_main %}
+            {% endblock %}
+        </main>
+    </div>
+</div>
+{% endblock %}

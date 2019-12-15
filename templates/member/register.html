@@ -1,0 +1,82 @@
+{% extends "shared/base.html" %}
+
+
+{% block main_body %}
+<div class="container-fluid">
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input name="first_name" id="first_name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input name="last_name" id="last_name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input name="phone" id="phone" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input name="email" id="email" type="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="fathers_name">Father's Name</label>
+            <input name="fathers_name" id="fathers_name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="uk_address">UK Address</label>
+            <input name="uk_address" id="uk_address" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input name="city" id="city" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="bd_address">BD Address</label>
+            <input name="bd_address" id="bd_address" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="union">Union</label>
+            <select class="form-control">
+                <option value="Union 1" selected>Union 1</option>
+                <option value="Union 2" selected>Union 2</option>
+                <option value="Union 3" selected>Union 3</option>
+                <option value="Union 4" selected>Union 4</option>
+                <option value="Union 5" selected>Union 5</option>
+                <option value="Union 6" selected>Union 6</option>
+                <option value="Union 7" selected>Union 7</option>
+                <option value="Union 8" selected>Union 8</option>
+                <option value="Union 9" selected>Union 9</option>
+                <option value="10 Pourosoba" selected>10 Pourosoba</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="member_type">Type of Membership</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="member_type" id="member_type_1" value="General">
+                <label class="form-check-label" for="member_type_1">General</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="member_type" id="member_type_2" value="Executive">
+                <label class="form-check-label" for="member_type_2">Executive</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="member_type" id="member_type_3" value="Honarary">
+                <label class="form-check-label" for="member_type_3">Honarary</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+{% endblock %}

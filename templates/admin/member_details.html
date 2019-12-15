@@ -1,0 +1,21 @@
+{% extends 'member/dashboard_base.html' %}
+
+{% block dashboard_main %}
+<div class="container">
+    <div class="row">
+        <p>Name: {{ new_user.first_name }} {{ new_user.last_name }}</p>
+        <p>Email: {{ new_user.email }}</p>
+        <p>Phone: {{ new_user.username }}</p>
+        <p>Father's Name: {{ new_member.fathers_name }}</p>
+        <p>UK Address: {{ new_member.uk_address }}</p>
+        <p>City: {{ new_member.city }}</p>
+        <p>BD Address: {{ new_member.bd_address }}</p>
+        <p>Union: {{ new_member.union }}</p>
+        <p>Type of Membership: {{ new_member.member_type }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Activate</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
