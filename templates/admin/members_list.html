@@ -17,11 +17,11 @@
             <tbody>
                 {% for new_member in new_members %}
                 <tr>
-                    <td>{{new_member.first_name}}</td>
-                    <td>{{new_member.last_name}}</td>
-                    <td>{{new_member.username}}</td>
-                    <td>{{new_member.email}}</td>
-                    <td><a href="/admin/member_details/{{new_member.id}}" class="btn btn-primary">See Full Details</a></td>
+                    <td>{{new_member.user.first_name}}</td>
+                    <td>{{new_member.user.last_name}}</td>
+                    <td>{{new_member.user.username}}</td>
+                    <td>{{new_member.user.email}}</td>
+                    <td><a href="/admin/member/{{new_member.user.id}}" class="btn btn-primary">See Full Details</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

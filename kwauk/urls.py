@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from admin import views as admin
 from member import views as member
+from .views import *
 
 urlpatterns = [
+    path('', index),
     path('register/', member.register),
+    path('registered/', member.registered),
+    path('member/', member.dashboard),
+    path('login/', member.login),
+    path('logout/', member.logout),
+    path('admin/members', admin.members_list),
+    path('admin/member/<user_id>/', admin.member_detail),
+    path('member/not-activated/', member.notactivated)
 ]

@@ -30,8 +30,8 @@ class Member(models.Model):
     # ])
 
 class MemberFee(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.SET_NULL))
-    paydate = models.DateField(auto_now=True, auto_now_add=True)
-    amount = models.DecimalField(decimal_places=2)
+    member = models.ForeignKey(Member, on_delete=models.SET_NULL, null=True, blank=True)
+    paydate = models.DateField(auto_now=True)
+    amount = models.DecimalField(decimal_places=2, max_digits=20)
 
 
