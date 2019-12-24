@@ -1,0 +1,29 @@
+{% extends 'member/dashboard_base.html' %}
+
+{% block dashboard_main %}
+<table>
+    <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Last Paid</td>
+            <td>Amount</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exec_member in exec_members %}
+            <tr>
+                <td>{{ exec_member.first_name }} </td>
+                <td>{{ exec_member.last_name }}</td>
+                <td>{{ exec_member.paydate }}</td>
+                <td>{{ exec_member.amount }}</td>
+                <td><a href="/admin/add-pay/{{ exec_member.pk }}">Add New Pay</a></td>
+                <td><a href="/admin/member/fees/{{ exec_member.pk }}">See All Payments</a></td>
+            </tr>
+            
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

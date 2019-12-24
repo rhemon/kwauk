@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Member(models.Model):
-    photo = models.ImageField(upload_to="profile/", null=True, blank=True)
+    photo = models.ImageField(upload_to="", default="default.jpg")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     fathers_name = models.CharField(max_length=100)
     uk_address = models.CharField(max_length=500)
@@ -31,7 +31,7 @@ class Member(models.Model):
 
 class MemberFee(models.Model):
     member = models.ForeignKey(Member, on_delete=models.SET_NULL, null=True, blank=True)
-    paydate = models.DateField(auto_now=True)
+    paydate = models.DateField()
     amount = models.DecimalField(decimal_places=2, max_digits=20)
 
 

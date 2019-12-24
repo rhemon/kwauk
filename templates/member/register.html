@@ -35,22 +35,22 @@
             <input name="city" id="city" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="bd_address">BD Address</label>
+            <label for="bd_address">BD Village</label>
             <input name="bd_address" id="bd_address" type="text" class="form-control">
         </div>
         <div class="form-group">
             <label for="union">Union</label>
             <select name="union" class="form-control">
                 <option value="Union 1" selected>Union 1</option>
-                <option value="Union 2" selected>Union 2</option>
-                <option value="Union 3" selected>Union 3</option>
-                <option value="Union 4" selected>Union 4</option>
-                <option value="Union 5" selected>Union 5</option>
-                <option value="Union 6" selected>Union 6</option>
-                <option value="Union 7" selected>Union 7</option>
-                <option value="Union 8" selected>Union 8</option>
-                <option value="Union 9" selected>Union 9</option>
-                <option value="10 Pourosoba" selected>10 Pourosoba</option>
+                <option value="Union 2">Union 2</option>
+                <option value="Union 3">Union 3</option>
+                <option value="Union 4">Union 4</option>
+                <option value="Union 5">Union 5</option>
+                <option value="Union 6">Union 6</option>
+                <option value="Union 7">Union 7</option>
+                <option value="Union 8">Union 8</option>
+                <option value="Union 9">Union 9</option>
+                <option value="10 Pourosoba">10 Pourosoba</option>
             </select>
         </div>
 
@@ -75,8 +75,13 @@
             <input class="form-control" type="password" name="password" id="password">
         </div>
 
+        <div class="form-group">
+            <label for="password2">Confirm Password</label>
+            <input class="form-control" type="password" name="password2" id="password2">
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+    <p> {{ error }} </p>
 </div>
 {% endblock %}

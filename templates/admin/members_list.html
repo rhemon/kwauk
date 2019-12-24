@@ -3,16 +3,18 @@
 {% block dashboard_main %}
 <div class="container">
     <div class="row">
-        <h3>New Members Waiting to be Activated</h3>
+        <p><h3>New Members Waiting to be Activated</h3></p>
+    </div>
+    <div class="row">
         <table>
             <thead>
-                <th>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Phone</td>
-                    <td>Email</td>
-                    <td></td>
-                </th>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 {% for new_member in new_members %}
@@ -21,12 +23,36 @@
                     <td>{{new_member.user.last_name}}</td>
                     <td>{{new_member.user.username}}</td>
                     <td>{{new_member.user.email}}</td>
-                    <td><a href="/admin/member/{{new_member.user.id}}" class="btn btn-primary">See Full Details</a></td>
+                    <td><a href="/admin/member/{{new_member.user.id}}" class="btn btn-primary">See Details</a></td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+        <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Member Type</th>
+                    <th>EDIT</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in active_members %}
+                <tr>
+                    <td>{{member.user.first_name}}</td>
+                    <td>{{member.user.last_name}}</td>
+                    <td>{{member.user.username}}</td>
+                    <td>{{member.member_type}}</td>
+                    <td><a href="/admin/member/{{member.user.id}}" class="btn btn-primary">See Full Details</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <p>Current member list will be added</p>
     </div>
     
 </div>

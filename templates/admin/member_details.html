@@ -3,18 +3,79 @@
 {% block dashboard_main %}
 <div class="container">
     <div class="row">
-        <p>Name: {{ new_user.first_name }} {{ new_user.last_name }}</p>
-        <p>Email: {{ new_user.email }}</p>
-        <p>Phone: {{ new_user.username }}</p>
-        <p>Father's Name: {{ new_member.fathers_name }}</p>
-        <p>UK Address: {{ new_member.uk_address }}</p>
-        <p>City: {{ new_member.city }}</p>
-        <p>BD Address: {{ new_member.bd_address }}</p>
-        <p>Union: {{ new_member.union }}</p>
-        <p>Type of Membership: {{ new_member.member_type }}</p>
+
         <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn btn-success">Activate</button>
+            <div class="">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}">
+            </div>
+            <div class="">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}">
+            </div>
+            <div class="">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="{{ user.email }}">
+            </div>
+            <div class="">
+                <label for="username">Phone</label>
+                <input type="text" name="username" id="username" value="{{ user.username }}">
+            </div>
+            <div class="form-group">
+                <label for="fathers_name">Father's Name</label>
+                <input name="fathers_name" id="fathers_name" type="text" class="form-control" value="{{ member.fathers_name }}">
+            </div>
+            <div class="form-group">
+                <label for="uk_address">UK Address</label>
+                <input name="uk_address" id="uk_address" type="text" class="form-control" value="{{ member.uk_address }}">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input name="city" id="city" type="text" class="form-control" value="{{ member.city }}">
+            </div>
+            <div class="form-group">
+                <label for="bd_address">BD Address</label>
+                <input name="bd_address" id="bd_address" type="text" class="form-control" value="{{ member.bd_address }}">
+            </div>
+            <div class="form-group">
+                <label for="union">Union</label>
+                <select name="union" class="form-control">
+                    <option value="Union 1" {% if member.union == "Union 1" %} selected {% endif %}>Union 1</option>
+                    <option value="Union 2" {% if member.union == "Union 2" %} selected {% endif %}>Union 2</option>
+                    <option value="Union 3" {% if member.union == "Union 3" %} selected {% endif %}>Union 3</option>
+                    <option value="Union 4" {% if member.union == "Union 4" %} selected {% endif %}>Union 4</option>
+                    <option value="Union 5" {% if member.union == "Union 5" %} selected {% endif %}>Union 5</option>
+                    <option value="Union 6" {% if member.union == "Union 6" %} selected {% endif %}>Union 6</option>
+                    <option value="Union 7" {% if member.union == "Union 7" %} selected {% endif %}>Union 7</option>
+                    <option value="Union 8" {% if member.union == "Union 8" %} selected {% endif %}>Union 8</option>
+                    <option value="Union 9" {% if member.union == "Union 9" %} selected {% endif %}>Union 9</option>
+                    <option value="10 Pourosoba" {% if member.union == "10 Pourosoba" %} selected {% endif %}>10 Pourosoba</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="member_type">Type of Membership</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="member_type" id="member_type_1" value="General" {% if member.member_type == "General" %} checked {% endif %}>
+                    <label class="form-check-label" for="member_type_1">General</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="member_type" id="member_type_2" value="Executive" {% if member.member_type == "Executive" %} checked {% endif %}>
+                    <label class="form-check-label" for="member_type_2">Executive</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="member_type" id="member_type_3" value="Honarary" {% if member.member_type == "Honarary" %} checked {% endif %}>
+                    <label class="form-check-label" for="member_type_3">Honarary</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" name="isactive" id="isactive" {% if member.user.is_active %} checked {% endif %}>
+                <lable for="isactive">Active</lable>
+            </div>
+            
+            <button type="submit" class="btn btn-success">Save</button>
         </form>
     </div>
 </div>

@@ -1,0 +1,30 @@
+{% extends 'member/dashboard_base.html' %}
+
+{% block dashboard_main %}
+<p> Payments by {{ member.user.first_name }} {{ member.user.last_name }}, {{ member.user.username }}</p>
+<table>
+    <thead>
+        <tr>
+            <th>Last Paid</th>
+            <th>Amount</th>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in payments %}
+            <tr>
+                <td>{{ payment.paydate }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="payid" value="{{ payment.id }}">
+                        <button type="submit" class="btn btn-danger">Remove Pay</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
