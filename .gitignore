@@ -1,5 +1,5 @@
 venv/
 .env
-migrations/*
+*/migrations/*
 media/*
 !media/default.jpg
