@@ -1,2 +1,5 @@
 venv/
 .env
+migrations/*
+media/*
+!media/default.jpg
