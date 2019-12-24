@@ -1,5 +1,7 @@
 venv/
 .env
-*/migrations/*
+*/migrations/
 media/*
 !media/default.jpg
+db.sqlite3
+__pycache__/
