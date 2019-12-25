@@ -116,7 +116,7 @@ def dashboard(request):
         member.union=request.POST.get("union")
         member.member_type=request.POST.get("member_type")
         member.save()
-    return render(request, "member/home.html", {"photo": member.photo.name, "member": member, "payments": payments})
+    return render(request, "member/home.html", {"photo": Member.objects.get(user=request.user).photo.name, "member": member, "payments": payments})
 
 
 def notactivated(request):

@@ -9,7 +9,7 @@ def members_list(request):
     users = Member.objects.filter(user__is_active=False)
     active_users = Member.objects.filter(user__is_active=True)
     
-    return render(request, "admin/members_list.html", {"new_members": users, "active_members": active_users})
+    return render(request, "admin/members_list.html", {"photo": Member.objects.get(user=request.user).photo.name, "new_members": users, "active_members": active_users})
 
 def member_detail(request, user_id):
     if not (request.user.is_authenticated and request.user.is_superuser):
@@ -17,7 +17,7 @@ def member_detail(request, user_id):
     user = User.objects.get(id=user_id)
     member = Member.objects.get(user=user)
     if request.method == "GET":
-        return render(request, "admin/member_details.html", {"user": user, "member": member})
+        return render(request, "admin/member_details.html", {"photo": Member.objects.get(user=request.user).photo.name, "user": user, "member": member})
     else:
         user.first_name = request.POST.get("first_name")
         user.last_name = request.POST.get("last_name")
@@ -53,7 +53,7 @@ def member_fees(request):
             mf['paydate'] = 'Not Done Yet'
             mf['amount'] = 0
         response.append(mf)
-    return render(request, "admin/member_fees.html", {"title": "Member Fees", "exec_members": response})
+    return render(request, "admin/member_fees.html", {"photo": Member.objects.get(user=request.user).photo.name, "title": "Member Fees", "exec_members": response})
             
 def add_member_pay(request, member_id):
     if not (request.user.is_authenticated and request.user.is_superuser):
@@ -64,7 +64,7 @@ def add_member_pay(request, member_id):
         return redirect("/admin/member-fees/")
     else:
         member = member.user
-        return render(request, "admin/add_pay.html", {"member": member})
+        return render(request, "admin/add_pay.html", {"photo": Member.objects.get(user=request.user).photo.name, "member": member})
 
 def members_all_payments(request, member_id):
     if not (request.user.is_authenticated and request.user.is_superuser):
@@ -75,4 +75,4 @@ def members_all_payments(request, member_id):
     member = Member.objects.get(id=member_id)
     member_fees = MemberFee.objects.filter(member=member)
     
-    return render(request, "admin/member_all_pay.html", {"member": member, "payments": member_fees})
+    return render(request, "admin/member_all_pay.html", {"photo": Member.objects.get(user=request.user).photo.name, "member": member, "payments": member_fees})
