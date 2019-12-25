@@ -23,16 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9#jyz&pile*g&s+t=lzldzsm)^*=2uxh!a1o7%_g$3c^7n$)c1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['167.172.216.215', 'rhemon.me']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'admin',
     'member',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -84,9 +84,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'OPTIONS': {
-                'read_default_file': '/etc/mysql/my.cnf',
-            },
+            'NAME': 'kwauk',
+	    'USER': 'kwaukadmin',
+            'PASSWORD': 'SylKowBan@81'
         }
     }
 
@@ -127,8 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static")
+#]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
