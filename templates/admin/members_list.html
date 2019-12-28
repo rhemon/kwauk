@@ -14,6 +14,7 @@
                     <th>Phone</th>
                     <th>Email</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@
                     <td>{{new_member.user.username}}</td>
                     <td>{{new_member.user.email}}</td>
                     <td><a href="/admin/member/{{new_member.user.id}}" class="btn btn-primary">See Details</a></td>
+                    <td><a href="/admin/member/delete/{{new_member.user.id}}" class="btn btn-primary">Delete</a></td>
                 </tr>
                 {% endfor %}
                 
@@ -40,6 +42,7 @@
                     <th>Phone</th>
                     <th>Member Type</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +53,7 @@
                     <td>{{member.user.username}}</td>
                     <td>{{member.member_type}}</td>
                     <td><a href="/admin/member/{{member.user.id}}" class="btn btn-primary">See Full Details</a></td>
+                    <td><a href="/admin/member/delete/{{member.user.id}}" class="btn btn-primary">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

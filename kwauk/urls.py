@@ -32,6 +32,7 @@ urlpatterns = [
     path('admin/members/', admin.members_list),
     path('admin/member-fees/', admin.member_fees),
     path('admin/add-pay/<member_id>', admin.add_member_pay),
+    path('admin/member/delete/<user_id>', admin.member_delete),
     path('admin/member/fees/<member_id>', admin.members_all_payments),
     path('admin/member/<user_id>/', admin.member_detail),
     path('member/not-activated/', member.notactivated)

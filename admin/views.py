@@ -11,6 +11,17 @@ def members_list(request):
     
     return render(request, "admin/members_list.html", {"photo": Member.objects.get(user=request.user).photo.name, "new_members": users, "active_members": active_users})
 
+def member_delete(request, user_id):
+    if not (request.user.is_authenticated and request.user.is_superuser):
+        return redirect("/http-404")
+    user = User.objects.get(id=user_id)
+    member = Member.objects.get(user=user)
+    if (user.is_superuser):
+        return redirect("/http-404")
+    user.delete()
+    member.delete()
+    return redirect("/admin/members")
+
 def member_detail(request, user_id):
     if not (request.user.is_authenticated and request.user.is_superuser):
         return redirect("/http-404")
