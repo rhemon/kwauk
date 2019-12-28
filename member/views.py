@@ -68,6 +68,14 @@ def register(request):
             member_type=request.POST.get("member_type")
         )
 
+        if 'profpic' in request.FILES:
+            print("i")
+            profpic = request.FILES.get('profpic')
+            fs = FileSystemStorage()
+            filename = fs.save(profpic.name, profpic)
+            member.photo = filename
+            member.save()
+
         return redirect("/registered/")
 
 def registered(request):

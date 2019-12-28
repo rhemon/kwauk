@@ -30,6 +30,9 @@ def member_detail(request, user_id):
         member.bd_address = request.POST.get("bd_address")
         member.union = request.POST.get("union")
         member.member_type = request.POST.get("member_type")
+        password = request.POST.get("password")
+        if (password != ""):
+            user.set_password(password)
         user.save()
         member.save()
         return redirect("/admin/members")
