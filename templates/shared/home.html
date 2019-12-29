@@ -5,8 +5,9 @@
     {% include 'shared/carousel.html' %}
     <h3>Site is under construction</h3>
     <h3> Members joined so far: </h3>
-<table>
+<table class="table">
     <tr>
+        <th></th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>BD Address</th>
@@ -15,6 +16,7 @@
     </tr>
     {% for member in users %}
     <tr>
+        <td style="text-align: center;"><img class=" img-responsive" style="max-width: 50px;" src="/media/{{ member.photo.name }}"></td>
         <td>{{ member.user.first_name }}</td>
         <td>{{ member.user.last_name }}</td>
         <td>{{ member.bd_address }}</td>
