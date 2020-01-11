@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['167.172.216.215', 'rhemon.me', '*']
 INSTALLED_APPS = [
     'admin',
     'member',
+    'project',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

@@ -1,0 +1,28 @@
+{% extends 'member/dashboard_base.html' %}
+
+{% block dashboard_main %}
+<a href="/admin/projects/create-project">Add new Project</a><br/>
+<table  class="table">
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Target Amount</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.name }} </td>
+                <td>{{ project.target_amount }}</td>
+                <td><a href="/admin/projects/edit-project/{{ project.id }}">Edit Details</a></td>
+                <td><a href="/admin/projects/project-donations/{{ project.id }}">See All Payments</a></td>
+                <!-- <td><a href="/admin/projects/delete/{{ project.id }}">Delete</a></td> -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

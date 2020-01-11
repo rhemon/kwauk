@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from admin import views as admin
 from member import views as member
+from project import views as project
 from .views import *
 from django.conf.urls.static import static
 from django.conf import settings
@@ -35,7 +36,14 @@ urlpatterns = [
     path('admin/member/delete/<user_id>', admin.member_delete),
     path('admin/member/fees/<member_id>', admin.members_all_payments),
     path('admin/member/<user_id>/', admin.member_detail),
-    path('member/not-activated/', member.notactivated)
+    path('member/not-activated/', member.notactivated),
+    path('projects/', project.project_list),
+    path('projects/<pid>', project.project_details),
+    path('admin/projects', admin.project_list),
+    path('admin/projects/create-project', admin.project_form),
+    path('admin/projects/edit-project/<pid>', admin.project_form),
+    path('admin/projects/project-donations/<pid>', admin.project_donation_commits),
+    path('member/donations', project.user_donations)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

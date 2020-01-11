@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from member.models import *
 from django.contrib.auth.models import User
+from project.models import *
 
 # Create your views here.
 def members_list(request):
@@ -90,3 +91,37 @@ def members_all_payments(request, member_id):
     member_fees = MemberFee.objects.filter(member=member)
     
     return render(request, "admin/member_all_pay.html", {"photo": Member.objects.get(user=request.user).photo.name, "member": member, "payments": member_fees})
+
+def project_form(request, pid=None):
+    if pid != None:
+        project = Project.objects.get(id=pid)
+    else:
+        project = None
+    if request.method == "POST":
+        if pid == None:
+            Project.objects.create(name=request.POST.get("name"), description=request.POST.get("description"), target_amount=request.POST.get("target_amount"))
+        else:
+            project.name = request.POST.get("name")
+            project.description = request.POST.get("description")
+            project.target_amount = request.POST.get("target_amount")
+            project.save()
+        return redirect("/admin/projects")
+    else:
+        return render(request, "admin/project_form.html", {"project": project})
+
+
+def project_list(request):
+    return render(request, "admin/projects_list.html", {"projects": Project.objects.all()})
+
+def project_donation_commits(request, pid):
+    if request.method == "POST":
+        donation = ProjectDonations.objects.get(id="donation_id")
+        donation.amount = request.POST.get("amount")
+        donation.paid = request.POST.get("paid") != None
+        donation.paydate = request.POST.get("paydate")
+        donation.save()
+    
+    project = Project.objects.get(id=pid)
+    donations = ProjectDonations.objects.filter(project=project)
+    
+    return render(request, "admin/project_donations.html", {"project": project, "donations": donations})
