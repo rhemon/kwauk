@@ -107,15 +107,15 @@ def project_form(request, pid=None):
             project.save()
         return redirect("/admin/projects")
     else:
-        return render(request, "admin/project_form.html", {"project": project})
+        return render(request, "admin/project_form.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project})
 
 
 def project_list(request):
-    return render(request, "admin/projects_list.html", {"projects": Project.objects.all()})
+    return render(request, "admin/projects_list.html", {"photo": Member.objects.get(user=request.user).photo.name,"projects": Project.objects.all()})
 
 def project_donation_commits(request, pid):
     if request.method == "POST":
-        donation = ProjectDonations.objects.get(id="donation_id")
+        donation = ProjectDonations.objects.get(id=request.POST.get("donation_id"))
         donation.amount = request.POST.get("amount")
         donation.paid = request.POST.get("paid") != None
         donation.paydate = request.POST.get("paydate")
@@ -124,4 +124,4 @@ def project_donation_commits(request, pid):
     project = Project.objects.get(id=pid)
     donations = ProjectDonations.objects.filter(project=project)
     
-    return render(request, "admin/project_donations.html", {"project": project, "donations": donations})
+    return render(request, "admin/project_donations.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project, "donations": donations})

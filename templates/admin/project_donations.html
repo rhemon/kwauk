@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row">
         <h3>Project: {{ project.name }} </h3>
-        <table>
+        <br/>
+        <table class="table">
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -18,23 +19,22 @@
             </tr>
             {% for donation in donations %}
             <tr>
-                <td>donation.user.first_name</td>
-                <td>donation.user.last_name</td>
-                <td>donation.user.username</td>
+                <td>{{ donation.user.first_name }}</td>
+                <td>{{ donation.user.last_name }}</td>
+                <td>{{ donation.user.username }}</td>
                 <form method="post">
                 {% csrf_token %}
+                <input type="hidden" name="donation_id" value="{{ donation.id }}">
                 <td><input type="number" name="amount" id="amount" value="{{ donation.amount }}"></td>
                 <td>{{ donation.commitdate }}</td>
                 <td><input type="checkbox" name="paid" id="paid" {% if donation.paid %} checked {% endif %}>Paid</td>
-                <td><input type="date" name="paydate" id="paydate" value="{{ donation.paydate }}"></td>
+                <td>{% if donation.paid %} {{ donation.paydate }} {% else %} <input type="date" name="paydate" id="paydate" value="{{ donation.paydate }}"> {% endif %}</td>
                 <td><button type="submit">Save</button></td>
                 <!-- <td><a href="/admin/project/{{project.id}}/delete-donation/{{ donation.id }}">Delete</a></td> -->
                 </form>
             </tr>
             {% endfor %}
            
-            <button type="submit" class="btn btn-success">Save</button>
-        </form>
         </table>
     </div>
 </div>

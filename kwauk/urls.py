@@ -43,7 +43,7 @@ urlpatterns = [
     path('admin/projects/create-project', admin.project_form),
     path('admin/projects/edit-project/<pid>', admin.project_form),
     path('admin/projects/project-donations/<pid>', admin.project_donation_commits),
-    path('member/donations', project.user_donations)
+    path('member/donations/', project.user_donations)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
