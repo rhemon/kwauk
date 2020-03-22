@@ -4,7 +4,7 @@ from django.db.models import Q
 
 # Create your views here.
 def search_help_post(request):
-    posts = []
+    posts = HelpPost.objects.all().order_by("area")
     if request.method=="POST":
         search_key = request.POST.get("search")
         posts = HelpPost.objects.filter(Q(postcode__startswith=search_key) | Q(phone=search_key) | Q(area__iexact=search_key))
