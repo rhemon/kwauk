@@ -7,9 +7,9 @@
     <h1>Help Individuals or Seek Help</h1>
     <p>If you would like to help someone in crisis, search with the area name or first part of postcode. It will display list of requests made by others, who you may further contact to help them out. You may also ask for help by clicking on the "Seek Help" button and enter your needs. Please note your information provided here will be made public.</p>
     <p>Share this link with others so that they can help and get help when needed.</p>
+    <p><a href="/coronahelp/new/" class="btn btn-success">Seek Help</a></p>
+    
     <br/>
-    <div class="row">
-    <div class="col-md-10">
     <form method="post">
         {% csrf_token %}
         <div class="row"><div class="col-md-10">
@@ -20,12 +20,8 @@
         </div>
     </div>
     </form>
-    </div>
-    <div class="col-md-2">
-        <a href="/coronahelp/new/" class="btn btn-success">Seek Help</a>
-    </div>
-    </div>
-
+    
+    <h3>Following people are seeking help: </h3>
     {% for post in posts %}
     <div>
         <h3>Name: {{post.name}}, Phone: {{ post.phone }} </h3>
