@@ -28,4 +28,4 @@ def resolve_help_post(request, pid):
         help_post.save()
         return redirect("/coronahelp/")
     else:
-        return render(request, "coronahelp/resolve.html", {"post":help_post, "emsg":"Problem can be resolved by the person seeking help with his set password. If you are the helper, contact the help seeker with given details."})
+        return render(request, "coronahelp/resolve.html", {"post":help_post, "emsg":"wrong password"})
