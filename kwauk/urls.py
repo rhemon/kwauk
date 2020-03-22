@@ -21,7 +21,7 @@ from project import views as project
 from .views import *
 from django.conf.urls.static import static
 from django.conf import settings
-
+from coronahelp import views as coronahelp
 urlpatterns = [
     path('', index),
     path('http-404/', http404),
@@ -43,7 +43,10 @@ urlpatterns = [
     path('admin/projects/create-project', admin.project_form),
     path('admin/projects/edit-project/<pid>', admin.project_form),
     path('admin/projects/project-donations/<pid>', admin.project_donation_commits),
-    path('member/donations/', project.user_donations)
+    path('member/donations/', project.user_donations),
+    path('coronahelp/', coronahelp.search_help_post),
+    path('coronahelp/new/', coronahelp.new_help_post),
+    path('coronahelp/resolve/<pid>/', coronahelp.resolve_help_post)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

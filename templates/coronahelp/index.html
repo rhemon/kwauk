@@ -1,0 +1,41 @@
+{% extends 'shared/base.html' %}
+
+{% block main_body %}
+
+<div class="container">
+    <br/> 
+    <h1>Help Individuals or Seek Help</h1>
+    <p>If you would like to help someone in crisis, search with the area name or first part of postcode. It will display list of requests made by others, who you may further contact to help them out. You may also ask for help by clicking on the "Seek Help" button and enter your needs. Please note your information provided here will be made public.</p>
+    <p>Share this link with others so that they can help and get help when needed.</p>
+    <br/>
+    <div class="row">
+    <div class="col-9">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row"><div class="col-10">
+            <input class="form-control" type="text" name="search" id="search" placeholder="Search with phone or first part of the postcode or with area.">
+        </div> 
+        <div class="col-2">
+        <input type="submit" class="btn btn-primary" value="Search" />
+        </div>
+    </div>
+    </form>
+    </div>
+    <div class="col-2">
+        <a href="/coronahelp/new/" class="btn btn-success">Seek Help</a>
+    </div>
+    </div>
+
+    {% for post in posts %}
+    <div>
+        <h3>Name: {{post.name}}, Phone: {{ post.phone }} </h3>
+        <h3>{{ post.postcode }}, {{ post.area }} </h3>
+        <p>{{ post.description }}</p>
+        <a class="btn btn-success" href="resolve/{{post.id}}/">Resolve</a>
+        <br/>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

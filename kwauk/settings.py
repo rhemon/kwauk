@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'admin',
     'member',
     'project',
+    'coronahelp',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
