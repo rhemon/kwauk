@@ -38,7 +38,7 @@ urlpatterns = [
     path('admin/member/<user_id>/', admin.member_detail),
     path('member/not-activated/', member.notactivated),
     path('projects/', project.project_list),
-    path('projects/<pid>', project.project_details),
+    path('projects/<pid>/<name>/', project.project_details),
     path('admin/projects', admin.project_list),
     path('admin/projects/create-project', admin.project_form),
     path('admin/projects/edit-project/<pid>', admin.project_form),
