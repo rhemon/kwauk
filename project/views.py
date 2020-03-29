@@ -3,7 +3,15 @@ from .models import *
 from django.contrib.auth.models import User
 # Create your views here.
 def project_list(request):
-    return render(request, "shared/projects_list.html", {"projects": Project.objects.all()})
+    projects = []
+    for each in Project.objects.all():
+        p = {}
+        p['name'] = each.name
+        p['slug'] = each.name.replace(' ', '-')
+        p['id'] = each.id
+        p['target_amount'] = each.target_amount
+        projects.append(p)
+    return render(request, "shared/projects_list.html", {"projects": projects})
 
 def project_details(request, pid, name):
     project = Project.objects.get(id=pid)
