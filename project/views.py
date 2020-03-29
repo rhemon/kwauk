@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 def project_list(request):
     return render(request, "shared/projects_list.html", {"projects": Project.objects.all()})
 
-def project_details(request, pid):
+def project_details(request, pid, name):
     project = Project.objects.get(id=pid)
     msg = ""
     if request.method == "POST":
