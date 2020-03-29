@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ project.name }} </td>
                 <td>{{ project.target_amount }}</td>
-                <td><a href='/projects/{{ project.id }}/{{ project.name | replace(" ", "-") }}/'>See Details</a></td>
+                <td><a href='/projects/{{ project.id }}/{{ project.name }}/'>See Details</a></td>
             </tr>
             {% endfor %}
         </table>
