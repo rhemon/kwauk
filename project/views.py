@@ -28,7 +28,7 @@ def project_details(request, pid, name):
         
         msg = "Donated £" + str(request.POST.get("amount")) + " successfully!" 
     donations = []
-    for each in ProjectDonations.objects.all():
+    for each in ProjectDonations.objects.all(project=project):
         donation = {}
         donation['name'] = each.user.first_name + " " + each.user.last_name
         donation['paid'] = each.paid
