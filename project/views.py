@@ -39,7 +39,7 @@ def project_details(request, pid, name):
         donations.append(donation)
     donations = sorted(donations, key=lambda x: x['name'])
 
-    total = ProjectDonations.objects.all().aggregate(sum=Sum('amount'))['sum']
+    total = ProjectDonations.objects.filter(project=project).aggregate(sum=Sum('amount'))['sum']
     return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations})
 
 def user_donations(request):
