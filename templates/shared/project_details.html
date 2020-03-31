@@ -8,6 +8,7 @@
     <div class="row">
             <div class="col-md-8">
                 <h2>{{ project.name }} </h2>
+                <h3>So far Donated: {{ total }}</h3>
                 <h4>{{ project.target_amount }}</h4>
                 <p>{{ project.description }}</p>
             </div>
@@ -37,4 +38,19 @@
         </div>
         </div>
         </div>
+        <table>
+            <tr>
+                <td></td>
+                <td>Name</td>
+                <td>Status</td>
+            </tr>
+            {% for donation in donations %}
+            <tr>
+                <td style="text-align: center;"><img class=" img-responsive" style="max-width: 50px;" src="/media/{{ donation.img }}"></td>
+                <td>{{ donation.name }}</td>
+                <td>{% if donation.paid %} Paid {% else %} Comitted {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
     {% endblock %}

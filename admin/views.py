@@ -125,3 +125,13 @@ def project_donation_commits(request, pid):
     donations = ProjectDonations.objects.filter(project=project)
     
     return render(request, "admin/project_donations.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project, "donations": donations})
+
+
+def swap_project_satus(request, pid):
+    if not (request.user.is_authenticated and request.user.is_superuser):
+        return redirect("/http-404")
+    project = Project.objects.get(id=pid)
+    project.hide = not project.hide
+    project.save()
+    return redirect('/admin/projects')
+    

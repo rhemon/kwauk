@@ -19,7 +19,7 @@
                 <td>{{ project.target_amount }}</td>
                 <td><a href="/admin/projects/edit-project/{{ project.id }}">Edit Details</a></td>
                 <td><a href="/admin/projects/project-donations/{{ project.id }}">See All Payments</a></td>
-                <!-- <td><a href="/admin/projects/delete/{{ project.id }}">Delete</a></td> -->
+                <td><a href="/admin/projects/switch/{{ project.id }}">{% if project.hide %} Show {% else %} Hide {% endif %}</a></td>
             </tr>
         {% endfor %}
     </tbody>

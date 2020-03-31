@@ -43,6 +43,7 @@ urlpatterns = [
     path('admin/projects/create-project', admin.project_form),
     path('admin/projects/edit-project/<pid>', admin.project_form),
     path('admin/projects/project-donations/<pid>', admin.project_donation_commits),
+    path('admin/projects/switch/<pid>', admin.swap_project_satus),
     path('member/donations/', project.user_donations),
     path('coronahelp/', coronahelp.search_help_post),
     path('coronahelp/new/', coronahelp.new_help_post),
