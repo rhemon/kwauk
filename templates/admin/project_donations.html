@@ -27,10 +27,25 @@
                 <input type="hidden" name="donation_id" value="{{ donation.id }}">
                 <td><input type="number" name="amount" id="amount" value="{{ donation.amount }}"></td>
                 <td>{{ donation.commitdate }}</td>
-                <td><input type="checkbox" name="paid" id="paid" {% if donation.paid %} checked {% endif %}>Paid</td>
-                <td>{% if donation.paid %} {{ donation.paydate }} {% else %} <input type="date" name="paydate" id="paydate" value="{{ donation.paydate }}"> {% endif %}</td>
+                <td><input type="checkbox" name="paid" id="paid_{{ donation.id }}" {% if donation.paid %} checked {% endif %}>Paid</td>
+                <td>{% if donation.paid %} {{ donation.paydate }} {% else %} <input type="date" name="paydate" id="paydate_{{ donation.id }}" value="{{ donation.paydate }}"> {% endif %}</td>
                 <td><button type="submit">Save</button></td>
                 <!-- <td><a href="/admin/project/{{project.id}}/delete-donation/{{ donation.id }}">Delete</a></td> -->
+                <script>
+                    $(document).ready(function() {
+
+                        $('#paid_{{ donation.id }}').change(function() {
+
+                            if ($('#paydate_{{ donation.id }}').attr('required')) {
+                                $('#paydate_{{ donation.id }}').removeAttr('required');
+                            } else {
+                                $('#paydate_{{ donation.id }}').attr('required','required');
+                            }
+
+                        });
+
+                        });
+                </script>    
                 </form>
             </tr>
             {% endfor %}
