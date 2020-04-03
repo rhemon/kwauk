@@ -23,10 +23,12 @@ def project_details(request, pid, name):
             user = User.objects.get(username=phone)
         except:
             user = User.objects.create_user(username=phone, first_name=request.POST.get("first_name"), last_name=request.POST.get("last_name"), password=request.POST.get("phone"), is_active=False)
-        ProjectDonations.objects.create(project=project, user=user, amount=request.POST.get("amount"))
-        
-        
-        msg = "Donated £" + str(request.POST.get("amount")) + " successfully!" 
+        donation = ProjectDonations.objects.filter(project=project, user=user)
+        if donation.exists(): 
+            msg = "You previously donated £" + str(donation.first().amount) + ". If you would like to change amount please contact admin."
+        else:
+            ProjectDonations.objects.create(project=project, user=user, amount=request.POST.get("amount"))
+            msg = "Donated £" + str(request.POST.get("amount")) + " successfully!" 
     donations = []
     for each in ProjectDonations.objects.filter(project=project):
         donation = {}
