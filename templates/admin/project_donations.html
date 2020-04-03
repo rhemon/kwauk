@@ -29,8 +29,8 @@
                 <td>{{ donation.commitdate }}</td>
                 <td><input type="checkbox" name="paid" id="paid_{{ donation.id }}" {% if donation.paid %} checked {% endif %}>Paid</td>
                 <td>{% if donation.paid %} {{ donation.paydate }} {% else %} <input type="date" name="paydate" id="paydate_{{ donation.id }}" value="{{ donation.paydate }}"> {% endif %}</td>
-                <td><button type="submit">Save</button></td>
-                <!-- <td><a href="/admin/project/{{project.id}}/delete-donation/{{ donation.id }}">Delete</a></td> -->
+                <td><button class="btn btn-success" type="submit">Save</button></td>
+                <td><a class="btn btn-danger" href="/admin/donation/delete/{{ donation.id }}">Delete</a></td>
                 <script>
                     $(document).ready(function() {
 

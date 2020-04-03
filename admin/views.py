@@ -135,4 +135,12 @@ def swap_project_satus(request, pid):
     project.hide = not project.hide
     project.save()
     return redirect('/admin/projects')
+
+def delete_donation(request, did):
+    if not (request.user.is_authenticated and request.user.is_superuser):
+        return redirect("/http-404")
+    pd = ProjectDonations.objects.get(id=did)
+    url = "/admin/projects/project-donations/" + str(pd.project.id)
+    pd.delete()
+    return redirect(url)
     
