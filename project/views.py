@@ -42,7 +42,7 @@ def project_details(request, pid, name):
     donations = sorted(donations, key=lambda x: x['name'])
 
     total = ProjectDonations.objects.filter(project=project).aggregate(sum=Sum('amount'))['sum']
-    return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations})
+    return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations, 'numpeople': len(donations)})
 
 def user_donations(request):
     donations = ProjectDonations.objects.filter(user=request.user)
