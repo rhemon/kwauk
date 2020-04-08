@@ -30,7 +30,7 @@ def project_details(request, pid, name):
             ProjectDonations.objects.create(project=project, user=user, amount=request.POST.get("amount"))
             msg = "Donated £" + str(request.POST.get("amount")) + " successfully!" 
     donations = []
-    for each in ProjectDonations.objects.filter(project=project):
+    for each in ProjectDonations.objects.filter(project=project).order_by("user__first_name"):
         donation = {}
         donation['name'] = each.user.first_name + " " + each.user.last_name
         donation['paid'] = each.paid
@@ -39,7 +39,7 @@ def project_details(request, pid, name):
         except:
             donation['img'] = 'default.jpg'
         donations.append(donation)
-    donations = sorted(donations, key=lambda x: x['name'])
+    # donations = sorted(donations,)
 
     total = ProjectDonations.objects.filter(project=project).aggregate(sum=Sum('amount'))['sum']
     return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations, 'numpeople': len(donations)})

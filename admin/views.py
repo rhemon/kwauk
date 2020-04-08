@@ -123,7 +123,7 @@ def project_donation_commits(request, pid):
         donation.save()
     
     project = Project.objects.get(id=pid)
-    donations = ProjectDonations.objects.filter(project=project)
+    donations = ProjectDonations.objects.filter(project=project).order_by("user__first_name")
     
     return render(request, "admin/project_donations.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project, "donations": donations})
 
