@@ -118,6 +118,7 @@ def project_donation_commits(request, pid):
         donation = ProjectDonations.objects.get(id=request.POST.get("donation_id"))
         donation.amount = request.POST.get("amount")
         donation.paid = request.POST.get("paid") != None
+        donation.remarks = request.POST.get("remarks")
         if request.POST.get("paid") != None:
             donation.paydate = request.POST.get("paydate")
         donation.save()

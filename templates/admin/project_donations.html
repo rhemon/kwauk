@@ -14,6 +14,7 @@
                 <th>Commited on</th>
                 <th></th>
                 <th>Pay Date</th>
+                <th>Remarks</th>
                 <td></td>
                 <!-- <td></td> -->
             </tr>
@@ -29,6 +30,7 @@
                 <td>{{ donation.commitdate }}</td>
                 <td><input type="checkbox" name="paid" id="paid_{{ donation.id }}" {% if donation.paid %} checked {% endif %}>Paid</td>
                 <td>{% if donation.paid %} {{ donation.paydate }} {% else %} <input type="date" name="paydate" id="paydate_{{ donation.id }}" value="{{ donation.paydate }}"> {% endif %}</td>
+                <td>{% if donation.paid %} {{ donation.remarks }} {% else %} <input type="text" name="remarks" id="remarks_{{ donation.id }}"> {% endif %}</td>
                 <td><button class="btn btn-success" type="submit">Save</button></td>
                 <td><a class="btn btn-danger" href="/admin/donation/delete/{{ donation.id }}">Delete</a></td>
                 <script>

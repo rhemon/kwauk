@@ -16,3 +16,4 @@ class ProjectDonations(models.Model):
     paid = models.BooleanField(default=False)
     paydate = models.DateField(null=True,blank=True)
     commitdate = models.DateField(default=datetime.date.today, null=True,blank=True)
+    remarks = models.CharField(max_length=200, null=True, blank=True)
