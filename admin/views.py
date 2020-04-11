@@ -109,6 +109,11 @@ def project_form(request, pid=None):
     else:
         return render(request, "admin/project_form.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project})
 
+def project_distributors(request, pid):
+    project = Project.objects.get(id=pid)
+    distributions =  Distributions.object.filter(project=project)
+    return render(request, "admin/projectdistribution.html", {"project": project, "distributions": distributions})
+
 
 def project_list(request):
     return render(request, "admin/projects_list.html", {"photo": Member.objects.get(user=request.user).photo.name,"projects": Project.objects.all()})

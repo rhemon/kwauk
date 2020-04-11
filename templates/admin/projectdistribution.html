@@ -1,0 +1,35 @@
+{% extends 'member/dashboard_base.html' %}
+
+{% block dashboard_main %}
+<a href="/admin/projects/{{ project.id }}/distributor/new">Create Distribution</a><br/>
+<p>Project {{ project.name }}</p>
+<table  class="table">
+    <thead>
+        <tr>
+            <th>In Charge</th>
+            <th>Name</th>
+            <td>Phone (Optional)</td>
+            <td>Father's Name</td>
+            <td>Union</td>
+            <td>Area</td>
+            <td>Remarks</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for distributor in distributions %}
+            <tr>
+                <td>{{ distributor.member.user.first_name }} {{ distributor.member.user.last_name }}</td>
+                <td>{{ distributor.name }}</td>
+                <td>{{ distributor.phone }}</td>
+                <td>{{ distributor.fathers_name }}</td>
+                <td>{{ distributor.union }}</td>
+                <td>{{ distributor.area }}</td>
+                <td>{{ distributor.remarks }}</td>
+                <td><a href="/admin/projects/{{ project.id }}/distributor/{{ distributor.id }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
