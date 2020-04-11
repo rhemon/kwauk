@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from member.models import *
 from django.contrib.auth.models import User
 from project.models import *
+import pandas as pd
+from django.http import HttpResponse
+from io import BytesIO
 
 # Create your views here.
 def members_list(request):
@@ -180,6 +183,20 @@ def project_donation_commits(request, pid):
     donations = ProjectDonations.objects.filter(project=project).order_by("user__first_name")
     
     return render(request, "admin/project_donations.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project, "donations": donations})
+
+def export_donation_commits(request, pid):
+    project = Project.objects.get(id=pid)
+    donations = ProjectDonations.objects.filter(project=project).order_by("user__first_name")
+    data = []
+    for each in donations:
+        donation = [each.user.first_name, each.user.last_name, each.user.username, each.commitdate, each.amount, each.paid, each.paydate, each.remarks]
+        data.append(donation)
+    df = pd.DataFrame(data, columns=["First Name", "Last Name", "Phone", "Commit Date", "Amount", "Paid", "Paid Date", "Remarks"])
+    with BytesIO() as b:
+        writer = pd.ExcelWriter(b, engine='xlsxwriter')
+        df.to_excel(writer, sheet_name="Sheet1")
+        writer.save()
+        return HttpResponse(b.getvalue(), content_type="application/vnd.ms-excel")
 
 
 def swap_project_satus(request, pid):

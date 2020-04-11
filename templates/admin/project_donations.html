@@ -3,7 +3,15 @@
 {% block dashboard_main %}
 <div class="container">
     <div class="row">
-        <h3>Project: {{ project.name }} </h3>
+        <div class="col-11">
+            <p><h3>Project: {{ project.name }} </h3><br/></p>
+        </div>
+        <dov class="col-1">
+            <br/>
+            <h5><a class="btn btn-success" href="/admin/projects/{{ project.id }}/export-donations" target="_blank">Export Excel</a></h5>
+        </dov>
+    </div>
+    <div class="row">
         <br/>
         <table class="table">
             <tr>

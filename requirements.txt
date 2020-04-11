@@ -2,3 +2,5 @@ django
 pillow
 mysqlclient==1.3.6
 python-dotenv
+xlsxwrite
+pandas
