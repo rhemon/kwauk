@@ -29,6 +29,7 @@ def project_details(request, pid, name):
         else:
             ProjectDonations.objects.create(project=project, user=user, amount=request.POST.get("amount"))
             msg = "Donated £" + str(request.POST.get("amount")) + " successfully!" 
+
     donations = []
     for each in ProjectDonations.objects.filter(project=project).order_by("user__first_name"):
         donation = {}
@@ -42,7 +43,9 @@ def project_details(request, pid, name):
     # donations = sorted(donations,)
 
     total = ProjectDonations.objects.filter(project=project).aggregate(sum=Sum('amount'))['sum']
-    return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations, 'numpeople': len(donations)})
+    paidt = ProjectDonations.objects.filter(project=project, paid=True).aggregate(sum=Sum('amount'))['sum']
+
+    return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations, 'numpeople': len(donations), 'paidt': paidt})
 
 def user_donations(request):
     donations = ProjectDonations.objects.filter(user=request.user)
