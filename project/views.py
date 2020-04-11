@@ -31,10 +31,13 @@ def project_details(request, pid, name):
             msg = "Donated £" + str(request.POST.get("amount")) + " successfully!" 
 
     donations = []
+    c = 0
     for each in ProjectDonations.objects.filter(project=project).order_by("user__first_name"):
         donation = {}
         donation['name'] = each.user.first_name + " " + each.user.last_name
         donation['paid'] = each.paid
+        if each.paid:
+            c+= 1
         try:
             donation['img'] = Member.objects.get(user=each.user).photo.name
         except:
@@ -45,7 +48,7 @@ def project_details(request, pid, name):
     total = ProjectDonations.objects.filter(project=project).aggregate(sum=Sum('amount'))['sum']
     paidt = ProjectDonations.objects.filter(project=project, paid=True).aggregate(sum=Sum('amount'))['sum']
 
-    return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations, 'numpeople': len(donations), 'paidt': paidt})
+    return render(request, "shared/project_details.html", {"project": project, "msg":msg, 'total': total, 'donations': donations, 'numpeople': len(donations), 'paidt': paidt, 'c':c})
 
 def user_donations(request):
     donations = ProjectDonations.objects.filter(user=request.user)
