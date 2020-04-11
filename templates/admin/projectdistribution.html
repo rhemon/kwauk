@@ -14,6 +14,7 @@
             <td>Area</td>
             <td>Remarks</td>
             <td></td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
                 <td>{{ distributor.area }}</td>
                 <td>{{ distributor.remarks }}</td>
                 <td><a href="/admin/projects/{{ project.id }}/distributor/{{ distributor.id }}">Edit</a></td>
+                <td><a href="/admin/projects/{{ project.id }}/distributor/delete/{{ distributor.id }}">Delete</a></td>
             </tr>
         {% endfor %}
     </tbody>

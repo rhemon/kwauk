@@ -17,3 +17,13 @@ class ProjectDonations(models.Model):
     paydate = models.DateField(null=True,blank=True)
     commitdate = models.DateField(default=datetime.date.today, null=True,blank=True)
     remarks = models.CharField(max_length=200, null=True, blank=True)
+
+class Distributions(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, on_delete=models.SET_NULL, null=True)
+    remarks = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    phone = models.CharField(max_length=200, null=True, blank=True)
+    fathers_name = models.CharField(max_length=200, null=True, blank=True)
+    union = models.CharField(max_length=200, null=True, blank=True)
+    area = models.CharField(max_length=200, null=True, blank=True)
