@@ -172,6 +172,11 @@ def project_donation_commits(request, pid):
         return redirect("/http-404")
     if request.method == "POST":
         donation = ProjectDonations.objects.get(id=request.POST.get("donation_id"))
+        u = donation.user
+        user.first_name = request.POST.get("first_name")
+        user.last_name = request.POST.get("last_name")
+        user.username = request.POST.get("phone")
+        user.save()
         donation.amount = request.POST.get("amount")
         donation.paid = request.POST.get("paid") != None
         donation.remarks = request.POST.get("remarks")
