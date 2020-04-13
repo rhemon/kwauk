@@ -28,10 +28,11 @@
             </tr>
             {% for donation in donations %}
             <tr>
-                <td><input type="text" name="first_name" id="first_name" value="{{ donation.user.first_name }}"></td>
-                <td><input type="text" name="last_name" id="last_name" value="{{ donation.user.last_name }}"></td>
-                <td><input type="text" name="phone" id="phone" value="{{ donation.user.username }}"></td>
                 <form method="post">
+                <td><input type="text" name="first_name" id="first_name" value="{{ donation.user.first_name }}" required></td>
+                <td><input type="text" name="last_name" id="last_name" value="{{ donation.user.last_name }}" required></td>
+                <td><input type="text" name="phone" id="phone" value="{{ donation.user.username }}" required></td>
+               
                 {% csrf_token %}
                 <input type="hidden" name="donation_id" value="{{ donation.id }}">
                 <td><input type="number" name="amount" id="amount" value="{{ donation.amount }}"></td>

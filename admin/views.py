@@ -175,7 +175,10 @@ def project_donation_commits(request, pid):
         u = donation.user
         u.first_name = request.POST.get("first_name")
         u.last_name = request.POST.get("last_name")
-        u.username = request.POST.get("phone")
+        try:
+            User.objects.get(username=request.POST.get("phone"))
+        except:
+            u.username = request.POST.get("phone")
         u.save()
         donation.amount = request.POST.get("amount")
         donation.paid = request.POST.get("paid") != None
@@ -183,6 +186,8 @@ def project_donation_commits(request, pid):
         if request.POST.get("paid") != None:
             donation.paydate = request.POST.get("paydate")
         donation.save()
+
+        return redirect("/admin/projects/project-donations/"+ str(pid))
     
     project = Project.objects.get(id=pid)
     donations = ProjectDonations.objects.filter(project=project).order_by("user__first_name")
