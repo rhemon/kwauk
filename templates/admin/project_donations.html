@@ -27,7 +27,7 @@
                 <!-- <td></td> -->
             </tr>
             {% for donation in donations %}
-            <tr>
+            <tr id="{{ donation.id }}">
                 <form method="post">
                 <td><input type="text" name="first_name" id="first_name" value="{{ donation.user.first_name }}" required></td>
                 <td><input type="text" name="last_name" id="last_name" value="{{ donation.user.last_name }}" required></td>
@@ -39,7 +39,7 @@
                 <td>{{ donation.commitdate }}</td>
                 <td><input type="checkbox" name="paid" id="paid_{{ donation.id }}" {% if donation.paid %} checked {% endif %}>Paid</td>
                 <td>{% if donation.paid %} {{ donation.paydate }} {% else %} <input type="date" name="paydate" id="paydate_{{ donation.id }}" value="{{ donation.paydate }}"> {% endif %}</td>
-                <td>{% if donation.paid %} {{ donation.remarks }} {% else %} <input type="text" name="remarks" id="remarks_{{ donation.id }}"> {% endif %}</td>
+                <td><input type="text" name="remarks" id="remarks_{{ donation.id }}" value="{{ donation.remarks }}"></td>
                 <td><button class="btn btn-success" type="submit">Save</button></td>
                 <td><a class="btn btn-danger" href="/admin/donation/delete/{{ donation.id }}">Delete</a></td>
                 <script>

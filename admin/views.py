@@ -170,6 +170,7 @@ def project_list(request):
 def project_donation_commits(request, pid):
     if not (request.user.is_authenticated and request.user.is_superuser):
         return redirect("/http-404")
+    don_id = ""
     if request.method == "POST":
         donation = ProjectDonations.objects.get(id=request.POST.get("donation_id"))
         u = donation.user
@@ -186,8 +187,9 @@ def project_donation_commits(request, pid):
         if request.POST.get("paid") != None:
             donation.paydate = request.POST.get("paydate")
         donation.save()
+        don_id += "#" + str(donation.id)
 
-        return redirect("/admin/projects/project-donations/"+ str(pid))
+        return redirect("/admin/projects/project-donations/"+ str(pid) + don_id)
     
     project = Project.objects.get(id=pid)
     donations = ProjectDonations.objects.filter(project=project).order_by("user__first_name")
