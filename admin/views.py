@@ -115,14 +115,14 @@ def project_form(request, pid=None):
         return render(request, "admin/project_form.html", {"photo": Member.objects.get(user=request.user).photo.name,"project": project})
 
 def distributor_form(request, pid, did):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect("/http-404")
+    # if not (request.user.is_authenticated and request.user.is_superuser):
+    #     return redirect("/http-404")
     project = Project.objects.get(id=pid)
     members = Member.objects.filter(user__is_active=True)
     if did == "new":
         
         if request.method == "GET":
-            return render(request, "admin/distributor_form.html", {"members": members})
+            return render(request, "admin/distributor_form.html", {"photo": Member.objects.get(user=request.user).photo.name, "members": members})
         else:
             member = Member.objects.get(id=request.POST.get("incharge"))
             Distributions.objects.create(member = member, project = project, 
@@ -146,25 +146,25 @@ def distributor_form(request, pid, did):
             distributor.area=request.POST.get("area")
             distributor.remarks=request.POST.get("remarks")
             distributor.save()
-    return redirect("/admin/projects/distribution/"+str(project.id))
+    return redirect("/member/projects/distribution/"+str(project.id))
 
 def project_distributor_delete(request, pid, did):
     if not (request.user.is_authenticated and request.user.is_superuser):
         return redirect("/http-404")
     Distributions.objects.get(id=did).delete()
-    return redirect("/admin/projects/distribution/"+str(pid))
+    return redirect("/member/projects/distribution/"+str(pid))
 
 def project_distributors(request, pid):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect("/http-404")
+    # if not (request.user.is_authenticated and request.user.is_superuser):
+    #     return redirect("/http-404")
     project = Project.objects.get(id=pid)
     distributions =  Distributions.objects.filter(project=project)
-    return render(request, "admin/projectdistribution.html", {"project": project, "distributions": distributions})
+    return render(request, "admin/projectdistribution.html", {"photo": Member.objects.get(user=request.user).photo.name, "project": project, "distributions": distributions})
 
 
 def project_list(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect("/http-404")
+    # if not (request.user.is_authenticated and request.user.is_superuser):
+    #     return redirect("/http-404")
     return render(request, "admin/projects_list.html", {"photo": Member.objects.get(user=request.user).photo.name,"projects": Project.objects.all()})
 
 def project_donation_commits(request, pid):

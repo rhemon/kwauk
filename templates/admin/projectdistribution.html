@@ -1,7 +1,7 @@
 {% extends 'member/dashboard_base.html' %}
 
 {% block dashboard_main %}
-<a href="/admin/projects/{{ project.id }}/distributor/new">Create Distribution</a><br/>
+<a href="/member/projects/{{ project.id }}/distributor/new">Create Distribution</a><br/>
 <p>Project {{ project.name }}</p>
 <table  class="table">
     <thead>
@@ -13,8 +13,10 @@
             <td>Union</td>
             <td>Area</td>
             <td>Remarks</td>
+            {% if request.user.is_superuser %}
             <td></td>
             <td></td>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -27,8 +29,10 @@
                 <td>{{ distributor.union }}</td>
                 <td>{{ distributor.area }}</td>
                 <td>{{ distributor.remarks }}</td>
+                {% if request.user.is_superuser %}
                 <td><a href="/admin/projects/{{ project.id }}/distributor/{{ distributor.id }}">Edit</a></td>
                 <td><a href="/admin/projects/{{ project.id }}/distributor/delete/{{ distributor.id }}">Delete</a></td>
+                {% endif %}
             </tr>
         {% endfor %}
     </tbody>

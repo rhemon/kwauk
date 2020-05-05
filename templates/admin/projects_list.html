@@ -1,15 +1,22 @@
 {% extends 'member/dashboard_base.html' %}
 
 {% block dashboard_main %}
+
+{% if request.user.is_superuser %}
 <a href="/admin/projects/create-project">Add new Project</a><br/>
+{% endif %}
+
 <table  class="table">
     <thead>
         <tr>
             <th>Project</th>
             <th>Target Amount</th>
             <td></td>
+            {% if request.user.is_superuser %}
             <td></td>
             <td></td>
+            <td></td>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -17,10 +24,12 @@
             <tr>
                 <td>{{ project.name }} </td>
                 <td>{{ project.target_amount }}</td>
-                <td><a href="/admin/projects/distribution/{{ project.id }}">Project Distributions</a></td>
+                <td><a href="/member/projects/distribution/{{ project.id }}">Project Distributions</a></td>
+                {% if request.user.is_superuser %}
                 <td><a href="/admin/projects/edit-project/{{ project.id }}">Edit Details</a></td>
                 <td><a href="/admin/projects/project-donations/{{ project.id }}">See All Payments</a></td>
                 <td><a href="/admin/projects/switch/{{ project.id }}">{% if project.hide %} Show {% else %} Hide {% endif %}</a></td>
+                {% endif %}
             </tr>
         {% endfor %}
     </tbody>
