@@ -135,7 +135,7 @@ def distributor_form(request, pid, did):
     else:
         distributor = Distributions.objects.get(id=did)
         if request.method == "GET":
-            return render(request, "admin/distributor_form.html", {"members": members, "distributor": distributor})
+            return render(request, "admin/distributor_form.html", {"photo": Member.objects.get(user=request.user).photo.name,"members": members, "distributor": distributor})
         else:
             member = Member.objects.get(id=request.POST.get("incharge"))
             distributor.member = member

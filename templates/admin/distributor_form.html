@@ -27,7 +27,18 @@
             </div>
             <div class="">
                 <label for="union">Union</label>
-                <input type="text" class="form-control" name="union" id="union" value="{{ distributor.union }}">
+            <select name="union" class="form-control">
+                <option value="Union 1" {% if distributor.union == "Union 1" %} selected {% endif %}>Union 1</option>
+                <option value="Union 2" {% if distributor.union == "Union 2" %} selected {% endif %}>Union 2</option>
+                <option value="Union 3" {% if distributor.union == "Union 3" %} selected {% endif %}>Union 3</option>
+                <option value="Union 4" {% if distributor.union == "Union 4" %} selected {% endif %}>Union 4</option>
+                <option value="Union 5" {% if distributor.union == "Union 5" %} selected {% endif %}>Union 5</option>
+                <option value="Union 6" {% if distributor.union == "Union 6" %} selected {% endif %} >Union 6</option>
+                <option value="Union 7" {% if distributor.union == "Union 7" %} selected {% endif %}>Union 7</option>
+                <option value="Union 8" {% if distributor.union == "Union 8" %} selected {% endif %}>Union 8</option>
+                <option value="Union 9" {% if distributor.union == "Union 9" %} selected {% endif %}>Union 9</option>
+                <option value="10 Pourosoba" {% if distributor.union == "10 Pourosoba" %} selected {% endif %}>10 Pourosoba</option>
+            </select>
             </div>
             <div class="">
                 <label for="area">Area</label>
